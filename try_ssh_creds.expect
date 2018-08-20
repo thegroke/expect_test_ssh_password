@@ -10,8 +10,9 @@ spawn ssh -v $user@$host
 expect "*assword:*"
 send "$password\r"
 expect {
-  "Permission denied" {send_user "Failure\n"; exit 255}
+  "Permission denied" {}
   "Authentication succeeded" {send_user "Success\n"; exit 0}
 }
 
+send_user "Failure\n"
 exit 255
