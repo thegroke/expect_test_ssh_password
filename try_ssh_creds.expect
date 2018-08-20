@@ -1,0 +1,17 @@
+#!/usr/bin/expect -f
+
+log_user 0
+
+set user [lindex $argv 0]
+set host [lindex $argv 1]
+set password [lindex $argv 2]
+
+spawn ssh -v $user@$host
+expect "*assword:*"
+send "$password\r"
+expect {
+  "Permission denied" {send_user "Failure\n"; exit 1}
+  "Authentication succeeded" {send_user "Success\n"; exit 0}
+}
+
+exit 1
