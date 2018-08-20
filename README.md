@@ -5,3 +5,6 @@ An expect script that when suppled with a user, host and password can test for s
 
 Usage: `./try_ssh_creds.expect user host password`
  e.g. `./try_ssh_creds.expect root someserver.local password1`
+
+
+Returns exit code `0` on valid login, otherwise `255`.
